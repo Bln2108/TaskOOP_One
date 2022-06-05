@@ -15,6 +15,15 @@ public class StatistecsServiceTest {
     }
 
     @Test
+    void currentNumberNo() {
+        Radio cond = new Radio();
+        cond.setCurrentNumber(-5);
+        int actual = cond.getCurrentNumber();
+        int expected = 0;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
     void currentNumberMax() {
         Radio cond = new Radio();
         cond.setCurrentNumber(10);
@@ -89,6 +98,24 @@ public class StatistecsServiceTest {
         cond.increaseVolume();
         int actual = cond.getSoundVolume();
         int expected = 6;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void soundVolumeNo() {
+        Radio cond = new Radio();
+        cond.setSoundVolume(-5);
+        int actual = cond.getSoundVolume();
+        int expected = 0;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void soundVolumeMaxNo() {
+        Radio cond = new Radio();
+        cond.setSoundVolume(15);
+        int actual = cond.getSoundVolume();
+        int expected = 0;
         Assertions.assertEquals(actual, expected);
     }
 
