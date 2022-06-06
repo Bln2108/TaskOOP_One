@@ -169,6 +169,23 @@ public class StatistecsServiceTest {
         Assertions.assertEquals(actual, expected);
     }
 
+    @Test
+    void nextNumber8_9() {
+        Radio cond = new Radio();
+        cond.setCurrentNumber(8);
+        cond.nextNumber();
+        int actual = cond.getCurrentNumber();
+        int expected = 9;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void nextNumber1_0() {
+        Radio cond = new Radio();
+        cond.setCurrentNumber(1);
+        cond.prevNumber();
+        int actual = cond.getCurrentNumber();
+        int expected = 0;
+        Assertions.assertEquals(actual, expected);
+    }
 }
-
-

@@ -16,21 +16,25 @@ public class Radio {
     }
 
     public void nextNumber() {
+        if (currentNumber == 9) {
+            currentNumber = 0;
+            return;
+        }
         if (currentNumber < 9) {
             currentNumber = currentNumber + 1;
         }
-        if (currentNumber == 9) {
-            currentNumber = 0;
-        }
+
     }
 
     public void prevNumber() {
+        if (currentNumber == 0) {
+            currentNumber = 9;
+            return;
+        }
         if (currentNumber > 0) {
             currentNumber = currentNumber - 1;
         }
-        if (currentNumber == 0) {
-            currentNumber = 9;
-        }
+
     }
 
     public int getCurrentNumber() {
