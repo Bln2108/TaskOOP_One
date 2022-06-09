@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 public class StatistecsServiceTest {
+    Radio cond = new Radio();
 
     @Test
     void currentNumber() {
-        Radio cond = new Radio();
         cond.setCurrentNumber(5);
         int actual = cond.getCurrentNumber();
         int expected = 5;
@@ -16,7 +16,6 @@ public class StatistecsServiceTest {
 
     @Test
     void currentNumberNo() {
-        Radio cond = new Radio();
         cond.setCurrentNumber(-5);
         int actual = cond.getCurrentNumber();
         int expected = 0;
@@ -25,25 +24,25 @@ public class StatistecsServiceTest {
 
     @Test
     void currentNumberMax() {
-        Radio cond = new Radio();
-        cond.setCurrentNumber(10);
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(99);
+        int actual = cond.getCurrentNumber();
+        int expected = 99;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void currentNumberMax1() {
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(100);
         int actual = cond.getCurrentNumber();
         int expected = 0;
         Assertions.assertEquals(actual, expected);
     }
 
-    @Test
-    void currentNumberMin() {
-        Radio cond = new Radio();
-        cond.setCurrentNumber(0);
-        int actual = cond.getCurrentNumber();
-        int expected = 0;
-        Assertions.assertEquals(actual, expected);
-    }
 
     @Test
     void nextNumber() {
-        Radio cond = new Radio();
         cond.setCurrentNumber(5);
         cond.nextNumber();
         int actual = cond.getCurrentNumber();
@@ -53,8 +52,8 @@ public class StatistecsServiceTest {
 
     @Test
     void nextNumberMax() {
-        Radio cond = new Radio();
-        cond.setCurrentNumber(9);
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(99);
         cond.nextNumber();
         int actual = cond.getCurrentNumber();
         int expected = 0;
@@ -63,7 +62,7 @@ public class StatistecsServiceTest {
 
     @Test
     void nextNumberMin() {
-        Radio cond = new Radio();
+        Radio cond = new Radio(100);
         cond.setCurrentNumber(0);
         cond.nextNumber();
         int actual = cond.getCurrentNumber();
@@ -73,17 +72,16 @@ public class StatistecsServiceTest {
 
     @Test
     void prevNumberMin() {
-        Radio cond = new Radio();
-        cond.setCurrentNumber(0);
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(99);
         cond.prevNumber();
         int actual = cond.getCurrentNumber();
-        int expected = 9;
+        int expected = 98;
         Assertions.assertEquals(actual, expected);
     }
 
     @Test
     void prevNumber() {
-        Radio cond = new Radio();
         cond.setCurrentNumber(5);
         cond.prevNumber();
         int actual = cond.getCurrentNumber();
@@ -92,8 +90,47 @@ public class StatistecsServiceTest {
     }
 
     @Test
+    void prevNumber0() {
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(0);
+        cond.prevNumber();
+        int actual = cond.getCurrentNumber();
+        int expected = 99;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void prevNumberN() {
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(55);
+        cond.prevNumber();
+        int actual = cond.getCurrentNumber();
+        int expected = 54;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void nextNumber8_9() {
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(99);
+        cond.nextNumber();
+        int actual = cond.getCurrentNumber();
+        int expected = 0;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
+    void nextNumber1_0() {
+        Radio cond = new Radio(100);
+        cond.setCurrentNumber(1);
+        cond.prevNumber();
+        int actual = cond.getCurrentNumber();
+        int expected = 0;
+        Assertions.assertEquals(actual, expected);
+    }
+
+    @Test
     void soundVolume() {
-        Radio cond = new Radio();
         cond.setSoundVolume(5);
         cond.increaseVolume();
         int actual = cond.getSoundVolume();
@@ -103,7 +140,6 @@ public class StatistecsServiceTest {
 
     @Test
     void soundVolumeNo() {
-        Radio cond = new Radio();
         cond.setSoundVolume(-5);
         int actual = cond.getSoundVolume();
         int expected = 0;
@@ -112,8 +148,7 @@ public class StatistecsServiceTest {
 
     @Test
     void soundVolumeMaxNo() {
-        Radio cond = new Radio();
-        cond.setSoundVolume(15);
+        cond.setSoundVolume(105);
         int actual = cond.getSoundVolume();
         int expected = 0;
         Assertions.assertEquals(actual, expected);
@@ -121,17 +156,15 @@ public class StatistecsServiceTest {
 
     @Test
     void soundVolumeMax() {
-        Radio cond = new Radio();
-        cond.setSoundVolume(10);
+        cond.setSoundVolume(100);
         cond.increaseVolume();
         int actual = cond.getSoundVolume();
-        int expected = 10;
+        int expected = 100;
         Assertions.assertEquals(actual, expected);
     }
 
     @Test
     void soundVolume1() {
-        Radio cond = new Radio();
         cond.setSoundVolume(7);
         cond.increaseVolume();
         int actual = cond.getSoundVolume();
@@ -141,7 +174,6 @@ public class StatistecsServiceTest {
 
     @Test
     void soundVolumeMin() {
-        Radio cond = new Radio();
         cond.setSoundVolume(0);
         cond.increaseVolume();
         int actual = cond.getSoundVolume();
@@ -151,7 +183,6 @@ public class StatistecsServiceTest {
 
     @Test
     void decreaseVolume() {
-        Radio cond = new Radio();
         cond.setSoundVolume(5);
         cond.decreaseVolume();
         int actual = cond.getSoundVolume();
@@ -161,7 +192,6 @@ public class StatistecsServiceTest {
 
     @Test
     void decreaseVolumeMin() {
-        Radio cond = new Radio();
         cond.setSoundVolume(0);
         cond.decreaseVolume();
         int actual = cond.getSoundVolume();
@@ -169,23 +199,4 @@ public class StatistecsServiceTest {
         Assertions.assertEquals(actual, expected);
     }
 
-    @Test
-    void nextNumber8_9() {
-        Radio cond = new Radio();
-        cond.setCurrentNumber(8);
-        cond.nextNumber();
-        int actual = cond.getCurrentNumber();
-        int expected = 9;
-        Assertions.assertEquals(actual, expected);
-    }
-
-    @Test
-    void nextNumber1_0() {
-        Radio cond = new Radio();
-        cond.setCurrentNumber(1);
-        cond.prevNumber();
-        int actual = cond.getCurrentNumber();
-        int expected = 0;
-        Assertions.assertEquals(actual, expected);
-    }
 }

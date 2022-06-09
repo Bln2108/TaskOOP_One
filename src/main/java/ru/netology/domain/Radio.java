@@ -4,9 +4,18 @@ public class Radio {
 
     private int currentNumber;
     private int soundVolume;
+    private int quantityNumber;
+
+    public Radio() {
+        quantityNumber = 10;
+    }
+
+    public Radio(int quantityNumber) {
+        this.quantityNumber = quantityNumber;
+    }
 
     public void setCurrentNumber(int newcurrentNumber) {
-        if (newcurrentNumber > 9) {
+        if (newcurrentNumber > quantityNumber - 1) {
             return;
         }
         if (newcurrentNumber < 0) {
@@ -16,11 +25,11 @@ public class Radio {
     }
 
     public void nextNumber() {
-        if (currentNumber == 9) {
+        if (currentNumber == quantityNumber - 1) {
             currentNumber = 0;
             return;
         }
-        if (currentNumber < 9) {
+        if (currentNumber < quantityNumber - 1) {
             currentNumber = currentNumber + 1;
         }
 
@@ -28,7 +37,7 @@ public class Radio {
 
     public void prevNumber() {
         if (currentNumber == 0) {
-            currentNumber = 9;
+            currentNumber = quantityNumber - 1;
             return;
         }
         if (currentNumber > 0) {
@@ -43,7 +52,7 @@ public class Radio {
 
     //звук
     public void setSoundVolume(int newSoundVolume) {
-        if (newSoundVolume > 10) {
+        if (newSoundVolume > 100) {
             return;
         }
         if (newSoundVolume < 0) {
@@ -53,10 +62,10 @@ public class Radio {
     }
 
     public void increaseVolume() {
-        if (soundVolume < 10) {
+        if (soundVolume < 100) {
             soundVolume = soundVolume + 1;
         }
-        if (soundVolume == 10) {
+        if (soundVolume == 100) {
             return;
         }
     }
